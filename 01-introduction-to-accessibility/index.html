@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+	<title>Accessibility in Web Development</title>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                # Introduction to Accessibility
+                
+                - Why accessibility matters
+                - Ethical, legal, and business perspectives
+                - Overview of WCAG principles (POUR)
+                
+                
+                Note:
+                Accessibility ensures inclusivity for users with diverse needs, including disabilities and neurodiversity. WCAG's four principles—Perceivable, Operable, Understandable, and Robust—serve as foundational guidelines.
+                </textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                # Poll: Accessibility Experience
+                
+                - Have you tested a website for accessibility before?
+                  - ✅ Yes
+                  - ❌ No
+                  
+                
+                Note:
+                This poll engages participants and helps gauge their familiarity with accessibility. Encourage discussion about past experiences.
+                </textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                # Common Barriers
+                
+                - **Visual**: Colour contrast, screen readers
+                - **Motor**: Large touch targets, keyboard navigation
+                - **Cognitive**: Clear layouts, readable fonts
+                
+                Note:
+                Understanding common barriers is crucial. Example: Users with motor disabilities may struggle with small buttons or complex navigation.
+                </textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                ![Contrast](static/1.1-a-contrast.jpg)
+                </textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                ![Screen Readers](static/1.1-b-screen-readers.jpg)
+                </textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                ![Touch targets](static/1.1-c-touch.jpg)
+                </textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                ![Keyboard navigations](static/1.1-d-keyboard.jpg)
+                </textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                ![Layout](static/1.1-e-layout.jpg)
+                </textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+                ![Fonts](static/1.1-f-fonts.jpg)
+                </textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Why Accessibility Matters for Everyone
+				---
+				- Accessibility benefits all users, not just those with disabilities.
+				- When we're **tired or overwhelmed**, our cognitive capacities are reduced.
+				- If we've **forgotten our glasses**, we experience visual impairments.
+				- Wearing **gloves in winter** can create motor issues.
+				- Accessible design improves usability for all users, enhancing the overall experience.
+				
+				Note:
+				Accessibility isn't just about compliance—it's about improving the experience for everyone. Situational limitations (e.g., being in bright sunlight, using a touchscreen with gloves) can affect users in ways similar to permanent disabilities. Making a site accessible ensures it remains usable for all.
+				</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Legal, Ethical & Business Perspectives
+				---
+				- **Legal**: UK Public Sector Bodies Accessibility Regulations (2018), Equality Act (2010), WCAG compliance.
+				- **Ethical**: Ensuring inclusivity, equal access to digital services, and social responsibility.
+				- **Business**: Wider audience reach, improved usability, reduced legal risks, and enhanced reputation.
+				
+				
+				Note:
+				Accessibility is legally required for UK government services under the Public Sector Bodies Accessibility Regulations 2018. The **Equality Act 2010** also mandates non-discrimination against disabled users. Ethically, providing accessible digital services aligns with public sector values of inclusivity and fairness. From a business perspective, accessible websites improve user experience, reduce legal risks, and enhance public trust.
+				</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+			# UK Public Sector Bodies Accessibility Regulations (2018)
+			
+			---
+			- **Legal Requirement**: All public sector websites and apps must be accessible.
+			- **WCAG 2.1 Compliance**: Sites must meet WCAG 2.1 AA standards.
+			- **Exemptions**: Some archived content and certain organisations may be exempt.
+			- **Accessibility Statements**: Required for transparency and compliance.
+			- **Enforcement**: Monitored by the **Government Digital Service (GDS)**, with penalties for non-compliance.
+			
+			
+			Note:
+			The UK Public Sector Bodies Accessibility Regulations (2018) require public sector websites and mobile apps to be **perceivable, operable, understandable, and robust**. Compliance with **WCAG 2.1 AA** is mandatory, ensuring digital services are accessible to all users, including those with disabilities. Government Digital Service (GDS) oversees enforcement, and organisations must publish an **accessibility statement** explaining their compliance.
+			</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Overview of WCAG Principles
+				---
+				- **Perceivable**: Information must be presented in ways users can perceive (e.g., text alternatives for images, captions for videos).
+				- **Operable**: The interface must be usable via keyboard navigation and assistive technologies.
+				- **Understandable**: Content must be clear, readable, and predictable in behaviour.
+				- **Robust**: Must be compatible with current and future assistive technologies.
+				
+				
+				Note:
+				The **WCAG principles** (Perceivable, Operable, Understandable, and Robust) ensure that digital content is accessible to a wide range of users, including those with disabilities. These guidelines help create an inclusive web experience, making information adaptable to assistive technologies and user needs.
+				</textarea>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		Reveal.initialize({
+			hash: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>

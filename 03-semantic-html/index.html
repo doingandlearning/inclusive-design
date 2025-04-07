@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+	<title>Accessibility in Web Development</title>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Introduction to Semantic HTML
+			
+---
+				- **What is Semantic HTML?**
+					- Using HTML elements that convey meaning about their content.
+				- **Why It Matters?**
+					- Improves accessibility by providing better context to assistive technologies.
+					- Enhances SEO and maintainability.
+				
+				
+				Note:
+				Semantic HTML improves both accessibility and usability. Using elements like `<header>`, `<nav>`, `<main>`, `<section>`, and `<footer>` instead of `<div>` provides clear structure and meaning to content.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Common Semantic HTML Elements
+				
+				- `<header>`: Represents introductory content or navigation.
+				- `<nav>`: Contains primary site navigation.
+				- `<main>`: Identifies the main content area.
+				- `<section>`: Groups related content together.
+				- `<footer>`: Defines footer content, often including metadata.
+				
+				
+				Note:
+				These elements provide structure and improve readability for both users and assistive technologies. Proper usage ensures clear content relationships and hierarchy.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Less Common Semantic Elements
+			 
+				---
+
+				- `<article>`: Represents self-contained content, such as a blog post.
+				- `<aside>`: Used for content tangentially related to the main content.
+				- `<figure>`: Groups media content like images with captions.
+				- `<figcaption>`: Provides a caption for a `<figure>` element.
+				- `<mark>`: Highlights text for emphasis.
+				
+				
+				Note:
+				While these elements are less commonly used, they offer significant benefits in terms of meaning, accessibility, and content organization.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Unusually Useful Semantic Elements
+				---
+				- `<details>`: Creates an interactive disclosure widget.
+				- `<summary>`: Provides a summary for a `<details>` element.
+				- `<time>`: Represents a date or time.
+				- `<abbr>`: Defines an abbreviation with an optional tooltip.
+				- `<address>`: Marks up contact information.
+				
+				
+				Note:
+				These elements help enhance user experience, improve SEO, and provide additional context for screen readers and other assistive technologies.
+				</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Benefits of Semantic HTML
+				---
+				- **Improves Accessibility**
+					- Helps screen readers and assistive technologies interpret content correctly.
+					- Provides a structured experience for visually impaired users.
+				---
+				- **Enhances SEO**
+					- Search engines understand page content better, improving indexing and ranking.
+					- Helps generate better rich snippets and structured search results.
+				---
+				- **Supports AI and Machine Learning**
+					- AI systems can parse content more accurately to extract meaning.
+					- Improves automated content summarization and voice search results.
+				
+				
+				Note:
+				Semantic HTML benefits developers, users, and machines alike. It creates a structured, meaningful experience that aids accessibility, improves discoverability, and ensures future-proof content parsing by AI.
+				</textarea>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		Reveal.initialize({
+			hash: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
