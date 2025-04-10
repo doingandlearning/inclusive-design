@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Signup Page</title>
+	<style>
+		body {
+			background-color: #ffffff;
+			color: #222;
+			font-family: Arial, sans-serif;
+			font-size: 16px;
+			line-height: 1.5;
+		}
+
+		nav {
+			display: flex;
+			gap: 1rem;
+		}
+
+		a.button {
+			background-color: #005fcc;
+			color: #fff;
+			padding: 10px 16px;
+			text-decoration: none;
+			border-radius: 4px;
+		}
+
+		.touch-target {
+			padding: 12px;
+			min-width: 44px;
+			min-height: 44px;
+			display: inline-block;
+		}
+
+		.error {
+			color: #b00020;
+			margin-top: 0.5rem;
+		}
+
+		.sr-only {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			border: 0;
+		}
+
+		.focusable:focus {
+			outline: 2px solid #005fcc;
+			outline-offset: 2px;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<a href="#" class="button focusable">Home</a>
+			<a href="#" class="button focusable">About</a>
+		</nav>
+	</header>
+
+	<main>
+		<h1>Sign Up Now</h1>
+		<form id="signup-form" onsubmit="return checkForm(event)">
+			<label for="name">Full Name</label>
+			<input type="text" id="name" name="name" required><br><br>
+
+			<label for="email">Email Address</label>
+			<input type="email" id="email" name="email" required aria-describedby="email-help">
+			<div id="email-help">We'll never share your email address.</div><br><br>
+
+			<label for="password">Password</label>
+			<input type="password" id="password" name="password" required><br><br>
+
+			<button type="submit" class="touch-target focusable">Submit</button>
+			<div id="form-error" class="error sr-only" role="alert"></div>
+		</form>
+
+		<section aria-live="polite" id="status">
+			<p>Status: Everything is OK</p>
+		</section>
+
+		<button onclick="changeStatus()" class="focusable">Update Status</button>
+
+		<p>
+			<a href="#more-info" class="focusable">Click here for more information</a>
+		</p>
+
+		<section id="modal" aria-modal="true" role="dialog" hidden>
+			<h2>Modal Title</h2>
+			<p>This modal is focus trapped and announced properly.</p>
+			<button onclick="closeModal()" class="focusable">Close</button>
+		</section>
+	</main>
+
+	<script>
+		function submitForm() {
+			const error = document.getElementById('form-error');
+			error.textContent = 'Please fix the errors above.';
+			error.classList.remove('sr-only');
+		}
+
+		function changeStatus() {
+			document.getElementById('status').innerHTML = '<p>Status: Something has changed!</p>';
+		}
+
+		function checkForm(e) {
+			e.preventDefault();
+			alert("Form submitted successfully!");
+			return false;
+		}
+
+		function closeModal() {
+			const modal = document.getElementById('modal');
+			modal.setAttribute('hidden', '');
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body {
+			background-color: #fefefe;
+			color: #ccc;
+			font-family: cursive;
+			font-size: 12px;
+			text-transform: uppercase;
+		}
+
+		.nav {
+			display: flex;
+			gap: 1rem;
+		}
+
+		.btn {
+			background: #888;
+			color: white;
+			padding: 5px;
+			border: none;
+			cursor: pointer;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		.error {
+			color: red;
+		}
+
+		.touch-target {
+			padding: 2px;
+		}
+
+		.link {
+			color: blue;
+			text-decoration: underline;
+		}
+
+		.no-focus:focus {
+			outline: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="nav">
+		<div onclick="alert('Home clicked')" role="button">Home</div>
+		<div onclick="alert('About clicked')">About</div>
+	</div>
+
+	<div>
+		<div id="heading" role="heading" aria-level="1">sign up now!</div>
+		<form onsubmit="return checkForm(event)">
+			<input id="duplicate" type="text" placeholder="Name">
+			<label for="duplicate">Full Name</label>
+			<br><br>
+			<input type="email" id="duplicate" placeholder="Email">
+			<label for="duplicate">Email Address</label>
+			<br><br>
+			<input type="password" placeholder="Password"><br><br>
+			<div class="touch-target no-focus" onclick="submitForm()">Submit</div>
+			<button class="hidden" type="submit">Real Submit</button>
+			<div id="form-error" class="error hidden" style="color: red">Something went wrong</div>
+		</form>
+	</div>
+
+	<div>
+		<div id="status" aria-hidden="true">Everything is OK</div>
+		<button onclick="changeStatus()">Update Status</button>
+	</div>
+
+	<div>
+		<span class="link" onclick="alert('You clicked a fake link')">Click here</span>
+	</div>
+
+	<div role="dialog" id="modal">
+		<div>This modal does not trap focus</div>
+		<button onclick="closeModal()">Close</button>
+	</div>
+
+	<script>
+		function submitForm() {
+			document.getElementById('form-error').classList.remove('hidden');
+		}
+
+		function changeStatus() {
+			document.getElementById('status').textContent = 'Something has changed!';
+		}
+
+		function checkForm(e) {
+			e.preventDefault();
+			alert("Form submitted!");
+			return false;
+		}
+
+		function closeModal() {
+			document.getElementById('modal').style.display = 'none';
+		}
+	</script>
+</body>
+
+</html>
