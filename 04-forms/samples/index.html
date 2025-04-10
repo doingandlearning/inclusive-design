@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.visually-hidden {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
+		}
+
+		.error {
+			color: red;
+			border: 1px red dashed;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>My amazing form</h1>
+	<div aria-live="polite">
+		<p>Hi!</p>
+	</div>
+	<form>
+
+		<label for="username" class="visually-hidden">Username:</label>
+		<input type="text" id="username" name="username" placeholder="Username" tabindex="1">
+		<fieldset>
+			<legend>
+				<h2>Favourite Programming Language</h2>
+			</legend>
+			<input type="radio" id="html" name="fav_language" value="HTML">
+			<label for="html">HTML</label><br>
+			<input type="radio" id="css" name="fav_language" value="CSS">
+			<label for="css">CSS</label><br>
+			<input type="radio" id="javascript" name="fav_language" value="JavaScript">
+			<label for="javascript">JavaScript</label>
+		</fieldset>
+		<div>
+			<label for="email">Email:</label>
+			<input type="password" id="email" name="email" required>
+		</div>
+		<div>
+			<input type="datetime-local">
+			<label for="age">Age</label>
+			<input type="number" id="age" aria-invalid="true" name="age" aria-describedby="age-error">
+			<span class="error" id="age-error">Invalid age. Needs be between 0-120</span>
+			<div>
+			</div>
+		</div>
+		<button type="submit">Submit</button>
+	</form>
+</body>
+<script>
+	const invalid = document.querySelector('[aria-invalid="true"]')
+	invalid.focus()
+</script>
+
+</html>

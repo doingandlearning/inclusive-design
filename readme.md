@@ -18,10 +18,10 @@ This two-day course provides developers with practical skills and foundational k
 2. Design Principles
 3. Semantic HTML
 4. Forms and Labels
-5. Hands-On Exploration
 6. ARIA and Accessibility Features
 7. Interactive Elements
-8. Accessibility Testing (optional bonus)
+8. Accessibility Testing 
+-> Accessibility doesn't have to make sites boring!
 
 ---
 

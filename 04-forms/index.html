@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+	<title>Accessibility in Web Development</title>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Forms and Labels: Accessibility Matters
+				
+				- **Why Accessible Forms?**
+					- Improves usability for all users, including those using assistive technologies.
+					- Ensures compliance with accessibility guidelines (WCAG, ARIA).
+				
+				
+				Note:
+				Forms are a critical interaction point on websites. Proper labeling and validation improve accessibility, making them easier to use for people relying on screen readers and other assistive technologies.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Proper Use of `<label>` and `for` Attributes
+				---
+				- **Explicit Labeling** (Best Practice)
+					```html
+					<label for="email">Email:</label>
+					<input type="email" id="email" name="email">
+					```
+				
+				- **Implicit Labeling** (Alternative but Less Preferred)
+					```html
+					<label>
+						Email:
+						<input type="email" name="email">
+					</label>
+					```
+				
+				- **Why It Matters?**
+					- Improves usability for screen reader users.
+					- Enhances clickability of labels for better UX.
+				
+				Note:
+				Associating `<label>` with an input using `for` ensures users of assistive technology can navigate and interact with forms more efficiently.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Accessible Form Validation
+				---
+				- **Use Native HTML Validation**
+					```html
+					<input type="email" required>
+					```
+				
+				- **Provide Clear Error Messages**
+					- Avoid vague errors like "Invalid input."
+					- Use specific guidance: "Email must be in the format: name@example.com."
+				
+				- **ARIA for Custom Validation**
+					```html
+					<input type="text" aria-invalid="true" aria-describedby="error-msg">
+					<span id="error-msg">Please enter a valid email address.</span>
+					```
+				
+				Note:
+				Well-designed form validation improves accessibility by providing helpful, clear feedback. Using `aria-invalid` and `aria-describedby` enhances the experience for screen reader users.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Good vs. Bad Form Practices
+				---
+				**✅ Good Practices:**
+				- Labels explicitly linked to inputs (`for` attribute).
+				- Placeholder text used as a hint, not as a replacement for labels.
+				- Clear validation messages with suggestions for correction.
+				- Logical tab order for keyboard navigation.
+				---
+				**❌ Bad Practices:**
+				- Labels missing or only using placeholders.
+				- Error messages appearing only via color (not readable for colorblind users).
+				- Poor focus management—keyboard users can’t navigate properly.
+				
+				Note:
+				Following these best practices ensures that forms are usable by everyone, reducing frustration and improving accessibility for all users.
+				</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+					# Timing of Validation Feedback
+				
+					- ✅ Show errors **on blur** (when a field loses focus)
+					- ✅ Show errors **on submit**
+					- ❌ Avoid validation **while typing**
+					- 🧠 Give users time to correct mistakes without pressure
+				
+					Note:
+					Real-time validation while typing may overwhelm users, especially those with screen readers or cognitive challenges. Best practice is to validate on blur or on submit to avoid unnecessary frustration.
+					</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+					# Error Message Placement and Clarity
+				 
+					---
+
+					- Place messages **next to the input**
+					- Use `aria-describedby` to link them
+					- ✅ Be specific:  
+						_"Phone number must be 11 digits."_  
+					- ❌ Avoid vague:  
+						_"Invalid input"_
+				
+					```html
+					<input id="phone" aria-describedby="phone-error">
+					<span id="phone-error" role="alert">
+						Must be 11 digits, no spaces.
+					</span>
+					```
+				
+					Note:
+					Clear messages support understanding and correction. `aria-describedby` makes sure assistive tech reads them out at the right time.
+					</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+					# Announcing Errors with Live Regions
+					---
+					- Use `aria-live="assertive"` or `role="alert"`
+					- Screen readers announce new content in that region
+					- Useful for **inline validation** or **summary errors**
+				
+					```html
+					<div role="alert">
+						Your email address is required.
+					</div>
+					```
+				
+					Note:
+					If your form injects errors after a submit, assistive tech won’t pick them up unless you use a live region. `role="alert"` is the most reliable way.
+					</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+					# Focus Management for Form Errors
+					---
+
+					- After submission, focus the first invalid field
+					- Optionally announce total errors at the top
+					- Improves flow for keyboard and screen reader users
+				
+					```js
+					const errorField = document.querySelector('[aria-invalid="true"]');
+					if (errorField) errorField.focus();
+					```
+				
+					Note:
+					Shifting focus helps users quickly resolve errors. It’s especially helpful on long forms or mobile screens where errors might be out of view.
+					</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+					# Group Related Inputs with `<fieldset>`
+				
+					- Wrap related options (e.g., checkboxes, radios)
+					- Use a `<legend>` to label the group
+					- Helps assistive tech users understand relationships
+				 
+					---
+
+					```html
+					<fieldset>
+						<legend>Preferred Contact Method</legend>
+						<label><input type="radio" name="contact" value="email"> Email</label>
+						<label><input type="radio" name="contact" value="phone"> Phone</label>
+					</fieldset>
+					```
+				
+					Note:
+					`fieldset` and `legend` provide structure and clarity, especially when screen readers encounter multiple similar fields.
+					</textarea>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		Reveal.initialize({
+			hash: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
