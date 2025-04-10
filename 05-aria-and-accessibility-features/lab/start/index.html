@@ -27,6 +27,20 @@
 			clip: rect(0, 0, 0, 0);
 			white-space: nowrap;
 			border: 0;
+
+		}
+
+		.button {
+			background: red;
+			color: white;
+			border-radius: 3px;
+			padding: 8px;
+		}
+
+		.button:focus {
+			outline: none;
+			color: red;
+			background: white;
 		}
 	</style>
 </head>
@@ -38,7 +52,13 @@
 	<!-- 1. Accordion (no aria) -->
 	<section>
 		<h2>Accordion</h2>
-		<button id="accordion-btn">
+		<button class="button" id="accordion-btn">
+			What is ARIA?
+		</button>
+		<button class="button" id="accordion-btn">
+			What is ARIA?
+		</button>
+		<button class="button" id="accordion-btn">
 			What is ARIA?
 		</button>
 		<div id="accordion-panel" hidden>

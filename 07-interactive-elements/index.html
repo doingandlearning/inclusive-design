@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+	<title>Accessibility in Web Development</title>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Interactive Elements
+			
+				Interactive elements include buttons, links, menus, sliders, and custom widgets that users interact with via mouse, touch, or keyboard.
+			
+				Designing these accessibly ensures a smoother experience for users with motor disabilities, screen reader users, and anyone relying on keyboard navigation.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				## Why This Matters
+			
+				- Many custom controls (e.g. JavaScript-based buttons or menus) are not keyboard accessible by default.
+				- Inaccessible interactive elements break the user journey — a single missing keyboard focus can prevent form submission or navigation.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				## Core Principles – Use Native HTML Elements When Possible
+			
+				- `<button>` is better than a clickable `<div>`.
+				- `<a href="...">` is better than `onclick` on a `<span>`.
+				- Native elements come with keyboard interaction and accessibility built-in.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				## Core Principles – Ensure Keyboard Accessibility
+			
+				- All interactive components should be operable using `Tab`, `Enter`, and arrow keys.
+				- Use `tabindex="0"` to make custom elements focusable.
+				- Avoid `tabindex="-1"` unless managing focus manually.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				## Core Principles – Provide Visual Focus Styles
+			
+				- Focus styles must be visible.
+				- Don’t remove outlines unless replacing them with a clear alternative (e.g. `outline: 2px solid #007acc`).
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				## Core Principles – Use ARIA When Necessary (but Prefer Native)
+			
+				- Use `role="button"` with `aria-pressed`, `aria-expanded`, etc., when creating custom controls.
+				- Remember to add `aria-disabled`, `aria-haspopup`, etc., to convey states.
+				- Avoid using ARIA to override native semantics.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				## Core Principles – Manage State and Feedback
+			
+				- Ensure that screen readers are informed of state changes (e.g. "expanded", "selected").
+				- Use `aria-live` or update `aria-*` attributes dynamically when a user acts on a control.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				## Common Mistakes
+			
+				- Using `<div>` or `<span>` as buttons without keyboard events or role attributes.
+				- Forgetting to manage focus when showing/hiding content.
+				- Creating modals, tabs, or menus without announcing their roles or states.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				## Tips
+			
+				- Use the [Accessibility Object Model](https://developer.mozilla.org/en-US/docs/Web/API/Accessibility_Object_Model) for complex interactions.
+				- Test with keyboard alone: can you tab through and activate every control?
+				- Try your page with a screen reader (VoiceOver, NVDA, or Narrator).
+				</textarea>
+			</section>
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# Beyond Screen Readers
+			
+				- Accessibility isn’t just about screen readers.
+				- We design for:
+					- Motion sensitivity
+					- Audio/visual redundancy
+					- Time and cognitive constraints
+					- Diverse input types (touch, voice, keyboard)
+			
+				Note:
+				Screen readers are a key part of accessibility—but real-world users have a wide range of needs. Let's look at a few critical but often overlooked considerations.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# 🌀 Motion and Animation
+				
+				- Some users experience **motion sickness or dizziness** from animations.
+				---
+				- Use `prefers-reduced-motion` to honour OS-level settings:
+					```css
+					@media (prefers-reduced-motion: reduce) {
+						* {
+							animation: none;
+							transition: none;
+							scroll-behavior: auto;
+						}
+					}
+					```
+			
+				- Avoid autoplaying animations, parallax effects, and spinning elements.
+			
+				Note:
+				Always test animated elements for sensitivity. `prefers-reduced-motion` is supported by all major browsers—respect it.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# 🔊 Audio and Visual Feedback
+			
+				- Never rely on **sound or colour alone** to communicate meaning.
+				- Use **text labels, icons, or messages** to reinforce feedback.
+				- Good: ✅ Success! Form submitted.
+				- Bad: Just a “ding” or red border with no explanation.
+			
+				Note:
+				Design for users who can't hear or see cues—every alert or state should be communicated in at least one **non-audio and non-colour** format.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# ⏱️ Time and Control
+			
+				- Don't rush users. Avoid:
+					- Timed form submissions
+					- Auto-closing modals
+					- Auto-playing carousels
+				- If time limits are needed, give:
+					- A warning
+					- A way to extend time
+			
+				Note:
+				Users with cognitive impairments or motor disabilities may need more time. Give control to the user where possible.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				# 🤲 Input Flexibility
+			
+				- Don’t assume everyone uses a mouse.
+				- Support:
+					- **Keyboard navigation**
+					- **Touch gestures**
+					- **Voice control**
+			
+				---
+
+				- Make custom gestures (e.g. swipe) **optional or duplicated** via visible controls.
+			
+				Note:
+				Some users rely solely on keyboard or assistive devices. Make sure every action can be completed without a mouse or complex gesture.
+				</textarea>
+			</section>
+
+			<section data-markdown data-separator-notes="^Note:">
+				<textarea data-template>
+				- ✅ Respect user preferences like reduced motion
+				- ✅ Never rely on colour or sound alone
+				- ✅ Give users control over time, transitions, and gestures
+				- ✅ Always offer multiple input paths
+			
+				> Accessibility is about **real-world flexibility** — not just assistive tech.
+			
+				Note:
+				These enhancements help *everyone*: people with temporary injuries, neurodivergent users, and anyone working in less-than-ideal environments.
+				</textarea>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		Reveal.initialize({
+			hash: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
