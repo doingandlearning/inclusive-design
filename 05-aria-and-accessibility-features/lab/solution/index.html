@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ARIA Lab Solution</title>
+	<style>
+		body {
+			font-family: sans-serif;
+			padding: 2rem;
+			background-color: #f9f9f9;
+			line-height: 1.6;
+		}
+
+		h2 {
+			margin-top: 2rem;
+		}
+
+		button {
+			padding: 0.5rem 1rem;
+			background-color: #005a9c;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		button:hover {
+			background-color: #004578;
+		}
+
+		#customCheckbox {
+			border: 2px solid #333;
+			padding: 0.5rem;
+			width: 200px;
+			cursor: pointer;
+			border-radius: 4px;
+			user-select: none;
+			text-align: center;
+		}
+
+		#customCheckbox:focus {
+			outline: 3px solid #70b5f9;
+		}
+
+		nav ul {
+			list-style: none;
+			padding: 0;
+			display: flex;
+			gap: 1rem;
+		}
+
+		nav a {
+			text-decoration: none;
+			color: #005a9c;
+		}
+
+		nav a:hover {
+			text-decoration: underline;
+		}
+
+		header,
+		footer,
+		main,
+		aside,
+		nav {
+			margin-top: 1.5rem;
+			padding: 1rem;
+			background-color: #fff;
+			border-radius: 6px;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		}
+
+		hr {
+			margin: 2rem 0;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!-- Accordion with ARIA -->
+	<h2>Accordion</h2>
+	<button id="toggle1" aria-expanded="false" aria-controls="section1" onclick="toggleAccordion()">
+		Show more
+	</button>
+	<div id="section1" hidden>
+		<p>This is hidden content revealed when the button is expanded.</p>
+	</div>
+
+	<script>
+		function toggleAccordion() {
+			const btn = document.getElementById('toggle1');
+			const section = document.getElementById('section1');
+			const expanded = btn.getAttribute('aria-expanded') === 'true';
+			btn.setAttribute('aria-expanded', !expanded);
+			section.hidden = expanded;
+		}
+	</script>
+
+	<hr>
+
+	<!-- Live Region -->
+	<h2>Live Region</h2>
+	<label for="email">Email:</label>
+	<input type="email" id="email" name="email">
+	<button onclick="checkEmail()">Check availability</button>
+	<div id="status" aria-live="polite" style="margin-top: 0.5rem;"></div>
+
+	<script>
+		function checkEmail() {
+			const status = document.getElementById('status');
+			status.textContent = 'Checking...';
+			setTimeout(() => {
+				status.textContent = 'Email is available!';
+			}, 1000);
+		}
+	</script>
+
+	<hr>
+
+	<!-- Custom Checkbox -->
+	<h2>Custom Checkbox</h2>
+	<div id="customCheckbox" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheckbox()"
+		onkeydown="checkKey(event)">
+		Subscribe to newsletter
+	</div>
+
+	<script>
+		function toggleCheckbox() {
+			const box = document.getElementById('customCheckbox');
+			const checked = box.getAttribute('aria-checked') === 'true';
+			box.setAttribute('aria-checked', !checked);
+			box.style.backgroundColor = !checked ? '#e6f7ff' : '';
+		}
+
+		function checkKey(e) {
+			if (e.key === ' ' || e.key === 'Enter') {
+				e.preventDefault();
+				toggleCheckbox();
+			}
+		}
+	</script>
+
+	<hr>
+
+	<!-- Landmark Roles -->
+	<header role="banner">
+		<h1>Example Page</h1>
+	</header>
+
+	<nav role="navigation" aria-label="Main navigation">
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+		</ul>
+	</nav>
+
+	<main role="main">
+		<h2>Main Content Area</h2>
+		<p>This is the core content of the page.</p>
+	</main>
+
+	<aside role="complementary">
+		<p>This is supporting information.</p>
+	</aside>
+
+	<footer role="contentinfo">
+		<p>&copy; 2025 Inclusive Web Co.</p>
+	</footer>
+
+</body>
+
+</html>

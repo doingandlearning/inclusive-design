@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.toggle {
+			cursor: pointer;
+			padding: 0.5rem;
+			background: #eee;
+		}
+	</style>
+</head>
+
+<body>
+	<h2>FAQ</h2>
+
+	<div>
+		<button class="toggle" onclick="toggleFaq(this)" aria-expanded="false" aria-controls="answer">
+			What is accessibility?
+		</button>
+
+		<p id="answer" class="answer" style="display: none;" hidden>
+			Accessibility means designing for everyone, including users with disabilities.
+		</p>
+	</div>
+
+	<script>
+		function toggleFaq(div) {
+
+			const answer = div.nextElementSibling;
+			const isVisible = answer.style.display === 'block';
+			div.setAttribute("aria-expanded", !isVisible);
+			answer.style.display = isVisible ? 'none' : 'block';
+			answer.hidden = isVisible
+		}
+	</script>
+
+	<h2>System Status</h2>
+	<div>
+		<button onclick="showAlert()">Trigger Alert</button>
+		<div id="alert-region" aria-live="assertive" role="alert"></div>
+	</div>
+
+	<script>
+		function showAlert() {
+			document.getElementById("alert-region").textContent = "Connection lost. Trying to reconnect…";
+		}
+	</script>
+
+	<h2>Preferences</h2>
+	<input type="checkbox" />
+	<div role="checkbox" aria-checked="true" aria-disabled="true" tabindex="0"
+		style="padding: 0.5rem; border: 1px solid #888;">
+		Enable Dark Mode
+	</div>
+
+	<header>
+		<h1>My News Site</h1>
+	</header>
+
+	<nav role="navigation" aria-label="Main menu">
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">World</a></li>
+		</ul>
+	</nav>
+
+	<main role="main">
+		<h2>Today's Headlines</h2>
+		<p>Top stories updated every hour.</p>
+	</main>
+
+	<nav role="navigation" aria-label="Social links">
+		<ul>
+			<li><a href="#">Twitter</a></li>
+			<li><a href="#">LinkedIn</a></li>
+		</ul>
+	</nav>
+</body>
+
+</html>

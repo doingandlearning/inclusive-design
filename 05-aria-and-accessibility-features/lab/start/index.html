@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>ARIA Lab Starter – No ARIA</title>
+	<style>
+		.custom-checkbox {
+			display: inline-block;
+			width: 1.2rem;
+			height: 1.2rem;
+			border: 2px solid #333;
+			cursor: pointer;
+		}
+
+		.checked {
+			background-color: #007acc;
+		}
+
+		.visually-hidden {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border: 0;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>ARIA Lab Starter – No ARIA Yet</h1>
+
+	<!-- 1. Accordion (no aria) -->
+	<section>
+		<h2>Accordion</h2>
+		<button id="accordion-btn">
+			What is ARIA?
+		</button>
+		<div id="accordion-panel" hidden>
+			ARIA stands for Accessible Rich Internet Applications. It helps enhance accessibility when native HTML isn't
+			enough.
+		</div>
+	</section>
+
+	<!-- 2. Live Region (non-live) -->
+	<section>
+		<h2>Status Check (Static)</h2>
+		<label for="email">Enter your email:</label>
+		<input type="email" id="email" />
+		<button id="check-btn">Check availability</button>
+
+		<div id="status" style="margin-top: 1rem;"></div>
+	</section>
+
+	<!-- 3. Custom Checkbox (unstyled div) -->
+	<section>
+		<h2>Custom Checkbox</h2>
+		<div id="myCheckbox" class="custom-checkbox" tabindex="0"></div>
+		<label for="myCheckbox">Subscribe to newsletter</label>
+	</section>
+
+	<!-- 4. Landmark Structure (no ARIA roles) -->
+	<div>
+		<h2>Header</h2>
+		<p>This is the page header.</p>
+	</div>
+
+	<div>
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Blog</a></li>
+		</ul>
+	</div>
+
+	<div>
+		<h2>Main Content</h2>
+		<p>This is where the primary content goes.</p>
+	</div>
+
+	<div>
+		<h2>Footer</h2>
+		<p>© 2025</p>
+	</div>
+
+	<script>
+		// Accordion toggle (without aria-expanded or aria-controls)
+		document.getElementById("accordion-btn").addEventListener("click", function () {
+			const panel = document.getElementById("accordion-panel");
+			panel.hidden = !panel.hidden;
+		});
+
+		// Simulate status update (no aria-live)
+		document.getElementById("check-btn").addEventListener("click", function () {
+			const status = document.getElementById("status");
+			status.textContent = "Checking...";
+			setTimeout(() => {
+				status.textContent = "Email is available!";
+			}, 1500);
+		});
+
+		// Custom checkbox toggle (no role, aria-checked, etc.)
+		const checkbox = document.getElementById("myCheckbox");
+		checkbox.addEventListener("click", () => {
+			checkbox.classList.toggle("checked");
+		});
+
+		checkbox.addEventListener("keydown", function (e) {
+			if (e.key === " " || e.key === "Enter") {
+				e.preventDefault();
+				checkbox.classList.toggle("checked");
+			}
+		});
+	</script>
+</body>
+
+</html>
